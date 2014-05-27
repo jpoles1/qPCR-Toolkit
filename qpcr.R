@@ -55,7 +55,7 @@ qpcr <- function(dat, numsamp=12, numgene=1, rep=2, col=3, genenames=NA, treatme
     mat2 = dataMatrix[,ncol(dataMatrix):1]
     graph = levelplot(mat2, col.regions=heat.colors(96, 1), main="Plate CF Values", scales=list(draw=F), xlab="", ylab="")
     if(savegraphs){
-      png("heatmap.png")
+      png("img/heatmap.png")
       print(graph)
       dev.off()
     }
@@ -81,10 +81,11 @@ qpcr <- function(dat, numsamp=12, numgene=1, rep=2, col=3, genenames=NA, treatme
     }
   }
   c=1
+  dir.create("img", showWarnings = FALSE)
   for(i in genenames){
     v=out[[c+1]]
     if(savegraphs){
-      png(paste(genenames[c],".png",sep=""))
+      png(paste("img/",genenames[c],".png",sep=""))
       boxplot(v~out$treat)
       title(i)
       c=c+1
@@ -96,7 +97,7 @@ qpcr <- function(dat, numsamp=12, numgene=1, rep=2, col=3, genenames=NA, treatme
       c=c+1
     }
   }
+  write.csv(out, "qpcrCfMeans.csv")
   out
 }
-x = qpcr(dat, 14,2,2,3,c("GAPDH", "UCP-1"),savegraphs=T,treatment=c("WT","WT","WT","WT","IL-4","IL-4","IL-4","Thio","Thio","Thio","IL-4+Thio","IL-4+Thio","IL-4+Thio","IL-4+Thio"))
-write.csv(x, "qpcr.csv")
+extract = qpcr(dat, 14,2,2,3,c("GAPDH", "UCP-1"),savegraphs=T,treatment=c("WT","WT","WT","WT","IL-4","IL-4","IL-4","Thio","Thio","Thio","IL-4+Thio","IL-4+Thio","IL-4+Thio","IL-4+Thio"))
