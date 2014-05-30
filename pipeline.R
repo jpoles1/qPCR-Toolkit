@@ -8,15 +8,14 @@ extract = cbind(extract1, extract2[,2:5])
 #datplot=qplot(treatment, value,data=pdat,geom=c("boxplot","jitter"), facets=.~variable, fill=treatment)
 #print(datplot)
 #dev.off()c
-pdat = cbind(extract$treatment, as.data.frame(2^(-1*abs(extract[,3:9]-extract[,2]))))
+pdat = cbind(extract$treatment, as.data.frame(2^(-1*extract[,3:9]-extract[,2])))
 names(pdat)[1] = "Treatment"
 pmelt = melt(pdat)
 qplot(Treatment, value,data=pmelt,geom=c("point"), facets=.~variable, fill=Treatment)
 w=pdat[pdat$Treatment=="WT",]
 wtavg=colMeans(w[2:8], na.rm=T)
 minwt = pdat[5:9,]
-minwt = minwt/wtavg
-plotdat=cbind(minwt[,1], paste(names[5:9], 1:5),log10(minwt[,2:8]/wtavg))
+plotdat=cbind(names[5:9], paste(names[5:9], 1:5),log10(minwt[,2:8]/wtavg))
 names(plotdat)[1] = "Treatment"
 names(plotdat)[2] = "TreatID"
 plotdatmelt= melt(plotdat)
