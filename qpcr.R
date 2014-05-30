@@ -100,4 +100,4 @@ qpcr <- function(dat, numsamp=12, numgene=1, rep=2, col=3, genenames=NA, treatme
   write.csv(out, "qpcrCfMeans.csv")
   out
 }
-extract = qpcr(dat, 14,2,2,3,c("GAPDH", "UCP-1"),savegraphs=T,treatment=c("WT","WT","WT","WT","IL-4","IL-4","IL-4","Thio","Thio","Thio","IL-4+Thio","IL-4+Thio","IL-4+Thio","IL-4+Thio"))
+#extract = qpcr(dat, 14,2,2,3,c("GAPDH", "UCP-1"),savegraphs=T,treatment=c("WT","WT","WT","WT","IL-4","IL-4","IL-4","Thio","Thio","Thio","IL-4+Thio","IL-4+Thio","IL-4+Thio","IL-4+Thio"))
